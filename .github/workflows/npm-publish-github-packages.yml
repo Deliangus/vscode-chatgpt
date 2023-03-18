@@ -5,8 +5,8 @@ name: Node.js Package
 
 on:
   push:
-    branches:
-      - main
+    tags:
+      - "v*"
 
 jobs:
   build:
@@ -38,8 +38,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          body: TODO New Release.
+          release_name: Auto Release v${{ steps.fetch_version.outputs.value }}
+          body: New Release.
           draft: false
           prerelease: false
       - name: Upload Release Asset
