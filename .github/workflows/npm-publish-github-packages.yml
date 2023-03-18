@@ -16,7 +16,7 @@ jobs:
       - uses: actions/setup-node@main
         with:
           node-version: 16
-      - run: npm i yarn vsce -g
+      - run: npm i yarn @vscode/vsce rimraf -g
       - run: vsce package
       - name: fetch version
         id: fetch_version
