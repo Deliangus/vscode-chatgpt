@@ -5,15 +5,15 @@ name: Node.js Package
 
 on:
   push:
-    tags:
-      - "v*"
+    branches:
+      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@main
+      - uses: actions/setup-node@main
         with:
           node-version: 16
       - run: npm i yarn vsce -g
@@ -50,4 +50,3 @@ jobs:
           asset_path: ./${{ steps.fetch_name.outputs.value }}-${{ steps.fetch_version.outputs.value }}.vsix
           asset_name: ${{ steps.fetch_name.outputs.value }}-${{ steps.fetch_version.outputs.value }}.vsix
           asset_content_type: application/vsix
-        
